@@ -36,15 +36,45 @@ body {
   transition: 0.3s;
 }
 
-/* --- HEADER --- */
+/* --- HEADER (Updated Layout) --- */
 .top-bar {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Keeps logo centered */
   align-items: center;
   position: relative;
   margin-bottom: 30px;
+  height: 40px; /* Fixed height for alignment */
 }
 
+/* 1. Left: Filter */
+.filter-container {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#filterDate {
+  padding: 6px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: var(--card);
+  color: var(--text);
+}
+
+.clear-btn {
+  background: #7f8c8d;
+  padding: 6px 10px;
+  font-size: 1rem;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+/* 2. Center: Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -53,9 +83,31 @@ body {
   font-weight: 800;
 }
 
+/* 3. Right: Toggle */
 .toggle-container {
   position: absolute;
   right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-label {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Mobile Fix for Header */
+@media (max-width: 600px) {
+  .top-bar {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+  .filter-container, .toggle-container {
+    position: static; /* Removes absolute positioning on mobile */
+    justify-content: center;
+  }
 }
 
 /* --- MAIN LAYOUT (Flexbox) --- */
@@ -67,13 +119,11 @@ body {
   align-items: flex-start;
 }
 
-/* Left Column (Inputs) */
 .left-column {
-  flex: 1 1 400px; /* Reduced base width slightly so it looks cleaner vertically */
+  flex: 1 1 400px;
   min-width: 300px;
 }
 
-/* Right Column (Summary + Chart) */
 .right-column {
   flex: 1 1 300px;
   display: flex;
@@ -91,11 +141,10 @@ body {
   width: 100%;
 }
 
-/* Input Specifics */
 .task-input {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Spacing between stacked inputs */
+  gap: 20px;
 }
 
 input, select {
@@ -140,8 +189,9 @@ hr { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
   justify-content: center;
 }
 
-/* --- LIST & FOOTER --- */
+/* --- LIST --- */
 .list-section { width: 100%; }
+
 .task-list { 
   background: var(--card); 
   border-radius: 16px; 

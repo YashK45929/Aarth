@@ -57,14 +57,34 @@ function deleteTransaction(id) {
 
 function saveAndRender() {
   localStorage.setItem('transactions', JSON.stringify(transactions));
-  renderList();
+  filterHistory(); 
   updateSummary();
   updateChart();
 }
 
-function renderList() {
+function filterHistory() {
+  const dateValue = document.getElementById('filterDate').value;
+  renderList(dateValue);
+}
+
+function clearFilter() {
+  document.getElementById('filterDate').value = '';
+  renderList(null);
+}
+
+function renderList(filterDate = null) {
   const list = document.getElementById('transactionList');
-  list.innerHTML = transactions.map(t => {
+  
+  const displayData = filterDate 
+    ? transactions.filter(t => t.date.split('T')[0] === filterDate)
+    : transactions;
+
+  if (displayData.length === 0) {
+    list.innerHTML = '<div style="text-align:center; padding:20px; color:gray;">No transactions found.</div>';
+    return;
+  }
+
+  list.innerHTML = displayData.map(t => {
     const isCredit = t.type === 'credit';
     const sign = isCredit ? '+' : '-';
     const colorClass = isCredit ? 'green-text' : 'red-text';
@@ -138,7 +158,7 @@ function updateChart() {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, /* Crucial for responsiveness */
+      maintainAspectRatio: false,
       plugins: {
         legend: { position: 'right' },
         title: { display: true, text: 'Expenses by Category' }
@@ -172,12 +192,20 @@ function downloadCSV() {
 
 function toggleDarkMode() {
   document.body.classList.toggle('dark');
-  localStorage.setItem('darkMoney', document.body.classList.contains('dark'));
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('darkMoney', isDark);
+  document.getElementById('modeLabel').innerText = isDark ? '🌙' : '🌞';
 }
 
-if(localStorage.getItem('darkMoney') === 'true') {
+const storedDark = localStorage.getItem('darkMoney') === 'true';
+if(storedDark) {
   document.body.classList.add('dark');
   document.getElementById('modeToggle').checked = true;
+  document.getElementById('modeLabel').innerText = '🌙';
+} else {
+  document.getElementById('modeLabel').innerText = '🌞';
 }
 
-saveAndRender();
+filterHistory();
+updateSummary();
+updateChart();

@@ -10,11 +10,19 @@
 <body>
 
   <div class="top-bar">
+    
+    <div class="filter-container">
+      <input type="date" id="filterDate" onchange="filterHistory()" title="Filter by Date" />
+      <button class="clear-btn" onclick="clearFilter()" title="Clear Filter">↻</button>
+    </div>
+
     <div class="logo">
       <span class="logo-emoji">💸</span>
       <span class="logo-text">Arth</span>
     </div>
+    
     <div class="toggle-container">
+      <span id="modeLabel" class="mode-label">🌞</span>
       <label class="switch">
         <input type="checkbox" id="modeToggle" onchange="toggleDarkMode()">
         <span class="slider"></span>
@@ -26,7 +34,6 @@
     
     <div class="left-column">
       <div class="task-input">
-        
         <input type="number" id="amount" placeholder="₹ Amount" />
 
         <select id="category" onchange="toggleOtherCategoryInput()">
@@ -53,7 +60,6 @@
     </div>
 
     <div class="right-column">
-      
       <div class="summary-card">
         <h3>📅 This Month</h3>
         <div class="stat-row">Given/Spent: <span class="red-text" id="monthDebit">0</span></div>
@@ -67,7 +73,6 @@
           <canvas id="expenseChart"></canvas>
         </div>
       </div>
-
     </div>
 
   </div> <div class="list-section">
