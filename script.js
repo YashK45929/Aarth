@@ -176,21 +176,12 @@ function downloadCSV() {
   document.body.removeChild(link);
 }
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  localStorage.setItem('darkMoney', isDark);
-  document.getElementById('modeLabel').innerText = isDark ? '🌙' : '🌞';
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js')
+    .then(() => console.log('Service Worker Registered'))
+    .catch(err => console.error('SW registration failed', err));
 }
 
 // Init
-const storedDark = localStorage.getItem('darkMoney') === 'true';
-if(storedDark) {
-  document.body.classList.add('dark');
-  document.getElementById('modeToggle').checked = true;
-  document.getElementById('modeLabel').innerText = '🌙';
-} else {
-  document.getElementById('modeLabel').innerText = '🌞';
-}
-
 saveAndRender();
+
