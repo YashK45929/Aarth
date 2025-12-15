@@ -1,43 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>समय</title>
+  <title>Arth - Money Manager</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <div class="toggle-container">
-    <label class="switch">
-      <input type="checkbox" id="modeToggle" onchange="toggleDarkMode()">
-      <span class="slider"></span>
-    </label>
-    <span id="modeLabel" class="mode-label">🌞 Light Mode</span>
+  <div class="top-bar">
+    <div class="logo">
+      <span class="logo-emoji">💸</span>
+      <span class="logo-text">Arth</span>
+    </div>
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="modeToggle" onchange="toggleDarkMode()">
+        <span class="slider"></span>
+      </label>
+    </div>
   </div>
 
-  <div class="logo">
-    <span class="logo-emoji">🕒</span>
-    <span class="logo-text">समय</span>
+  <div class="dashboard-wrapper">
+    
+    <div class="left-column">
+      <div class="task-input">
+        <div class="input-row">
+          <input type="number" id="amount" placeholder="₹ Amount" />
+          <select id="type">
+            <option value="debit">🔴 Debit (Expense)</option>
+            <option value="credit">🟢 Credit (Income)</option>
+          </select>
+        </div>
+        
+        <div class="input-row">
+          <select id="category" onchange="toggleOtherCategoryInput()">
+            <option value="" disabled selected>📂 Category</option>
+            <option value="Food">🍔 Food</option>
+            <option value="Travel">🚖 Travel</option>
+            <option value="Shopping">🛍️ Shopping</option>
+            <option value="Bills">🧾 Bills</option>
+            <option value="Salary">💰 Salary</option>
+            <option value="Lending">🤝 Lending</option>
+            <option value="Other">✨ Other</option>
+          </select>
+          <input type="text" id="customCategory" placeholder="Enter Category Name" style="display: none;" />
+          
+          <input type="text" id="reason" placeholder="Reason (e.g., Pizza, Uber)" />
+        </div>
+        
+        <button onclick="addTransaction()">Add Transaction</button>
+      </div>
+    </div>
+
+    <div class="right-column">
+      
+      <div class="summary-card">
+        <h3>📅 This Month</h3>
+        <div class="stat-row">Given/Spent: <span class="red-text" id="monthDebit">0</span></div>
+        <div class="stat-row">Taken/Earned: <span class="green-text" id="monthCredit">0</span></div>
+        <hr>
+        <div class="stat-row"><strong>Net Status: <span id="monthStatus">0</span></strong></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-container">
+          <canvas id="expenseChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </div> <div class="list-section">
+    <h3>📜 Transaction History</h3>
+    <div class="task-list" id="transactionList"></div>
+    <button class="download-btn" onclick="downloadCSV()">📥 Download CSV</button>
   </div>
-
-  <div class="task-input">
-    <input type="text" id="taskName" placeholder="Enter task name" />
-    <button onclick="startTask()">Start Task</button>
-  </div>
-
-  <h3>🟢 Running Tasks</h3>
-  <div class="task-list" id="runningList"></div>
-
-  <h3>✅ Completed Tasks</h3>
-  <div class="task-list" id="taskList"></div>
-
-  <button class="download-btn" onclick="downloadCSV()">📥 Download CSV</button>
-
-  <footer>
-    <p>Made with ❤️ by Yash</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
 </html>
