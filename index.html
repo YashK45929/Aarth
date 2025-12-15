@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>समय</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="modeToggle" onchange="toggleDarkMode()">
+      <span class="slider"></span>
+    </label>
+    <span id="modeLabel" class="mode-label">🌞 Light Mode</span>
+  </div>
+
+  <div class="logo">
+    <span class="logo-emoji">🕒</span>
+    <span class="logo-text">समय</span>
+  </div>
+
+  <div class="task-input">
+    <input type="text" id="taskName" placeholder="Enter task name" />
+    <button onclick="startTask()">Start Task</button>
+  </div>
+
+  <h3>🟢 Running Tasks</h3>
+  <div class="task-list" id="runningList"></div>
+
+  <h3>✅ Completed Tasks</h3>
+  <div class="task-list" id="taskList"></div>
+
+  <button class="download-btn" onclick="downloadCSV()">📥 Download CSV</button>
+
+  <footer>
+    <p>Made with ❤️ by Yash</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
