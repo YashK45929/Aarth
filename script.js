@@ -57,34 +57,20 @@ function deleteTransaction(id) {
 
 function saveAndRender() {
   localStorage.setItem('transactions', JSON.stringify(transactions));
-  filterHistory(); 
+  renderList();
   updateSummary();
   updateChart();
 }
 
-function filterHistory() {
-  const dateValue = document.getElementById('filterDate').value;
-  renderList(dateValue);
-}
-
-function clearFilter() {
-  document.getElementById('filterDate').value = '';
-  renderList(null);
-}
-
-function renderList(filterDate = null) {
+function renderList() {
   const list = document.getElementById('transactionList');
   
-  const displayData = filterDate 
-    ? transactions.filter(t => t.date.split('T')[0] === filterDate)
-    : transactions;
-
-  if (displayData.length === 0) {
+  if (transactions.length === 0) {
     list.innerHTML = '<div style="text-align:center; padding:20px; color:gray;">No transactions found.</div>';
     return;
   }
 
-  list.innerHTML = displayData.map(t => {
+  list.innerHTML = transactions.map(t => {
     const isCredit = t.type === 'credit';
     const sign = isCredit ? '+' : '-';
     const colorClass = isCredit ? 'green-text' : 'red-text';
@@ -197,6 +183,7 @@ function toggleDarkMode() {
   document.getElementById('modeLabel').innerText = isDark ? '🌙' : '🌞';
 }
 
+// Init
 const storedDark = localStorage.getItem('darkMoney') === 'true';
 if(storedDark) {
   document.body.classList.add('dark');
@@ -206,6 +193,4 @@ if(storedDark) {
   document.getElementById('modeLabel').innerText = '🌞';
 }
 
-filterHistory();
-updateSummary();
-updateChart();
+saveAndRender();
