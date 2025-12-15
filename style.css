@@ -23,9 +23,7 @@ body.dark {
 }
 
 /* GLOBAL RESET */
-* {
-  box-sizing: border-box; /* Crucial for preventing layout jumble */
-}
+* { box-sizing: border-box; }
 
 body {
   background: var(--bg);
@@ -33,7 +31,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   padding: 1.5rem;
   margin: 0 auto;
-  max-width: 1200px; /* Limits width on big screens */
+  max-width: 1200px;
   width: 95%;
   transition: 0.3s;
 }
@@ -63,21 +61,21 @@ body {
 /* --- MAIN LAYOUT (Flexbox) --- */
 .dashboard-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Allows stacking on mobile */
+  flex-wrap: wrap;
   gap: 24px;
   margin-bottom: 30px;
-  align-items: flex-start; /* Aligns top edges */
+  align-items: flex-start;
 }
 
 /* Left Column (Inputs) */
 .left-column {
-  flex: 1 1 500px; /* Grows, Shrinks, Base width 500px */
+  flex: 1 1 400px; /* Reduced base width slightly so it looks cleaner vertically */
   min-width: 300px;
 }
 
 /* Right Column (Summary + Chart) */
 .right-column {
-  flex: 1 1 300px; /* Grows, Shrinks, Base width 300px */
+  flex: 1 1 300px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -97,15 +95,7 @@ body {
 .task-input {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.input-row { display: flex; gap: 12px; }
-.input-row > * { flex: 1; }
-
-@media (max-width: 600px) {
-    .input-row { flex-wrap: wrap; }
-    #customCategory { min-width: 100%; }
+  gap: 20px; /* Spacing between stacked inputs */
 }
 
 input, select {
@@ -128,6 +118,7 @@ button {
   font-weight: bold;
   font-size: 1.05rem;
   box-shadow: 0 4px 12px rgba(68, 32, 210, 0.25);
+  margin-top: 5px;
 }
 
 /* Summary Specifics */
@@ -143,7 +134,7 @@ hr { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
 }
 .chart-container {
   position: relative;
-  height: 250px; /* Fixed height for stability */
+  height: 250px;
   width: 100%;
   display: flex;
   justify-content: center;

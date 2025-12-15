@@ -26,29 +26,27 @@
     
     <div class="left-column">
       <div class="task-input">
-        <div class="input-row">
-          <input type="number" id="amount" placeholder="₹ Amount" />
-          <select id="type">
-            <option value="debit">🔴 Debit (Expense)</option>
-            <option value="credit">🟢 Credit (Income)</option>
-          </select>
-        </div>
         
-        <div class="input-row">
-          <select id="category" onchange="toggleOtherCategoryInput()">
-            <option value="" disabled selected>📂 Category</option>
-            <option value="Food">🍔 Food</option>
-            <option value="Travel">🚖 Travel</option>
-            <option value="Shopping">🛍️ Shopping</option>
-            <option value="Bills">🧾 Bills</option>
-            <option value="Salary">💰 Salary</option>
-            <option value="Lending">🤝 Lending</option>
-            <option value="Other">✨ Other</option>
-          </select>
-          <input type="text" id="customCategory" placeholder="Enter Category Name" style="display: none;" />
+        <input type="number" id="amount" placeholder="₹ Amount" />
+
+        <select id="category" onchange="toggleOtherCategoryInput()">
+          <option value="" disabled selected>📂 Category</option>
+          <option value="Food">🍔 Food</option>
+          <option value="Travel">🚖 Travel</option>
+          <option value="Shopping">🛍️ Shopping</option>
+          <option value="Bills">🧾 Bills</option>
+          <option value="Salary">💰 Salary</option>
+          <option value="Lending">🤝 Lending</option>
+          <option value="Other">✨ Other</option>
+        </select>
+        <input type="text" id="customCategory" placeholder="Enter Category Name" style="display: none;" />
+
+        <select id="type">
+          <option value="debit">🔴 Debit (Expense)</option>
+          <option value="credit">🟢 Credit (Income)</option>
+        </select>
           
-          <input type="text" id="reason" placeholder="Reason (e.g., Pizza, Uber)" />
-        </div>
+        <input type="text" id="reason" placeholder="Reason (e.g., Pizza, Uber)" />
         
         <button onclick="addTransaction()">Add Transaction</button>
       </div>
